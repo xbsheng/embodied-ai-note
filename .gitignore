@@ -1,5 +1,104 @@
 node_modules/
 docs/.vitepress/dist/
 docs/.vitepress/cache/
-*.log
+
+# ROS 2 / colcon
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+.eggs/
+dist/
+wheels/
+*.whl
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+coverage.xml
+htmlcov/
+.hypothesis/
+.ipynb_checkpoints/
+
+# C / C++ / CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+.cache/clangd/
+.clangd/
+*.o
+*.obj
+*.a
+*.lib
+*.dylib
+*.dll
+*.exe
+*.out
+
+# ROS bags & recorded data (large / generated)
+*.bag
+*.db3
+*.mcap
+*.pcd
+*.ply
+*.h5
+*.hdf5
+rosbag2_*/
+
+# Models & training artifacts (Embodied AI / ML)
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.safetensors
+*.pb
+*.tflite
+wandb/
+mlruns/
+lightning_logs/
+runs/
+outputs/
+checkpoints/
+
+# Media / capture dumps
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.user
+
+# OS
 .DS_Store
+Thumbs.db
+Desktop.ini
+
+# Misc
+*.log
+*.tmp
+*.bak
+*.orig
+.cache/
+

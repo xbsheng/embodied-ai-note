@@ -1,0 +1,13 @@
+#!/bin/sh
+# 提交前自动格式化本次暂存的文件，并重新加入暂存区。
+# 用 git config core.hooksPath .githooks 启用（pnpm install 会自动配置）。
+files=$(git diff --cached --name-only --diff-filter=ACMR)
+[ -z "$files" ] && exit 0
+
+while IFS= read -r f; do
+  pnpm exec prettier --write --ignore-unknown "$f" || exit 1
+done <<EOF
+$files
+EOF
+
+echo "$files" | xargs -I{} git add -- {}

@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig, type HeadConfig } from 'vitepress'
 
 // 中文按字切分 + 英文/数字按词切分，让本地搜索能命中中文关键词
 function tokenize(text: string): string[] {
@@ -48,16 +48,31 @@ function topicSidebar({ text, base, chapters }: Topic) {
 // GitHub Pages 项目站点通过 DOCS_BASE 传入子路径，例如 /ros2-notes/
 const base = process.env.DOCS_BASE || '/'
 
+// 百度统计：只在生产构建注入，避免本地开发污染统计数据
+const baiduAnalytics = `var _hmt = _hmt || [];
+(function () {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?b3812cf93bcf87ea8f36b26cccf9b861';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(hm, s);
+})();`
+
+const head: HeadConfig[] = [
+  ['link', { rel: 'icon', type: 'image/png', href: `${base}favicon.png` }],
+  ['meta', { name: 'theme-color', content: '#023272' }],
+]
+
+if (process.env.NODE_ENV === 'production') {
+  head.push(['script', {}, baiduAnalytics])
+}
+
 export default defineConfig({
   base,
   lang: 'zh-CN',
   title: '具身智能学习笔记',
   description: 'ROS2 与具身智能的图文笔记 —— 可检索、可离线阅读',
   cleanUrls: true,
-  head: [
-    ['link', { rel: 'icon', type: 'image/png', href: `${base}favicon.png` }],
-    ['meta', { name: 'theme-color', content: '#023272' }],
-  ],
+  head,
 
   markdown: {
     lineNumbers: true,

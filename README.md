@@ -1,6 +1,8 @@
 # 具身智能学习笔记
 
-ROS2 与具身智能的图文笔记，用 [VitePress](https://vitepress.dev) 构建，支持中文全文搜索与离线阅读。
+ROS2 与具身智能的图文笔记
+
+**在线阅读：<https://xbsheng.github.io/embodied-ai-note/>**
 
 ## 内容
 

@@ -73,8 +73,16 @@ export default defineConfig({
       activeMatch: `^${t.base}/`,
     })),
     sidebar: topics.map(topicSidebar),
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/xbsheng/embodied-ai-note' },
+    ],
     outline: { level: [2, 3], label: '本页目录' },
     docFooter: { prev: '上一篇', next: '下一篇' },
+    editLink: {
+      pattern:
+        'https://github.com/xbsheng/embodied-ai-note/edit/main/docs/:path',
+      text: '在 GitHub 上编辑此页面',
+    },
     darkModeSwitchLabel: '主题',
     lightModeSwitchTitle: '切换到浅色',
     darkModeSwitchTitle: '切换到深色',

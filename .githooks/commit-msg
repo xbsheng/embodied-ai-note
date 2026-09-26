@@ -1,0 +1,18 @@
+#!/bin/sh
+# 校验提交信息符合 Conventional Commits，例如：
+#   fix(ci): resolve pnpm version conflict
+# 临时绕过：git commit --no-verify
+subject=$(head -1 "$1")
+
+# 放行 git 自己生成的信息
+case "$subject" in
+  Merge* | Revert* | fixup!* | squash!*) exit 0 ;;
+esac
+
+if ! echo "$subject" | grep -qE '^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9._-]+\))?!?: .+'; then
+  echo "✖ 提交信息不符合 Conventional Commits"
+  echo "  格式: <type>(<scope>): <subject>"
+  echo "  type: feat fix docs style refactor perf test build ci chore revert"
+  echo "  示例: fix(ci): resolve pnpm version conflict"
+  exit 1
+fi
